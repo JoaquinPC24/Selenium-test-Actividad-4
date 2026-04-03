@@ -1,0 +1,162 @@
+/* Variables de Diseño proyecto selenium */
+:root {
+    --glass: rgba(255, 255, 255, 0.95);
+    --primary: #6366f1;
+    --secondary: #a855f7;
+    --accent: #22d3ee;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --danger: #ff4757;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    /* Degradado de fondo moderno */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Contenedor Principal con Grid */
+.main-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 100%;
+    max-width: 1100px;
+}
+
+@media (min-width: 768px) {
+    .main-wrapper {
+        grid-template-columns: 350px 1fr; /* Sidebar para form, main para tabla */
+    }
+}
+
+/* Tarjetas Estilo Cristal */
+.glass-card {
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Header de la App */
+.app-header {
+    grid-column: 1 / -1; /* Ocupa todo el ancho */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+/* Formularios */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+input {
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+/* Botones */
+.btn-primary {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-primary:hover { transform: translateY(-2px); }
+
+/* Tabla Responsive */
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    text-align: left;
+    padding: 15px;
+    background: #f8fafc;
+    color: var(--text-muted);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+tr:last-child td { border-bottom: none; }
+
+/* Botones de acción */
+.action-links a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.edit-link { color: var(--primary); }
+.delete-link { color: var(--danger); }
+/* Título Inventario Pro con Degradado y Sombra */
+.title-brand {
+    font-size: 2.8rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: linear-gradient(to right, #ffffff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.6));
+}
+/* Limitador de altura para el formulario del Dashboard */
+#aside-formulario {
+    max-height: 300px; /* Ajusta este valor a los píxeles que prefieras */
+    overflow-y: auto;  /* Activa el scroll si el contenido supera la altura */
+    padding-right: 10px; /* Espacio para que el scroll no tape el contenido */
+}
+
+/* Opcional: Personalizar la barra de scroll para que se vea moderna */
+#aside-formulario::-webkit-scrollbar {
+    width: 6px;
+}
+#aside-formulario::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-radius: 10px;
+}
+#aside-formulario::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}

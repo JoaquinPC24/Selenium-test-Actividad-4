@@ -1,0 +1,643 @@
+{
+  "stats": {
+    "suites": 7,
+    "tests": 9,
+    "passes": 8,
+    "pending": 0,
+    "failures": 1,
+    "start": "2026-04-03T21:18:38.751Z",
+    "end": "2026-04-03T21:19:26.160Z",
+    "duration": 47409,
+    "testsRegistered": 9,
+    "passPercent": 88.88888888888889,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "c640d878-7c57-454f-9501-cb95a6422137",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "eba190d8-841e-45c0-833b-ed772bca92d0",
+          "title": "HU01: Registro de Usuario",
+          "fullFile": "C:\\xampp\\htdocs\\inventario-selenium\\tests\\hu01_registro.test.js",
+          "file": "\\tests\\hu01_registro.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"HU01: Registro de Usuario\"",
+              "fullTitle": "HU01: Registro de Usuario \"before all\" hook in \"HU01: Registro de Usuario\"",
+              "timedOut": false,
+              "duration": 2908,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await new Builder().forBrowser('chrome').build();",
+              "err": {},
+              "uuid": "be215c92-6dc6-400e-a698-1f93b4a23640",
+              "parentUUID": "eba190d8-841e-45c0-833b-ed772bca92d0",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"HU01: Registro de Usuario\"",
+              "fullTitle": "HU01: Registro de Usuario \"after all\" hook in \"HU01: Registro de Usuario\"",
+              "timedOut": false,
+              "duration": 334,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.quit();",
+              "err": {},
+              "uuid": "0fdd73fb-a998-4650-9a13-e92ff918a131",
+              "parentUUID": "eba190d8-841e-45c0-833b-ed772bca92d0",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "Debe mostrar error si la contraseña tiene menos de 8 caracteres",
+              "fullTitle": "HU01: Registro de Usuario Debe mostrar error si la contraseña tiene menos de 8 caracteres",
+              "timedOut": false,
+              "duration": 2638,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get('http://localhost:3000/register');\nawait driver.findElement(By.id('username')).sendKeys('user_test');\nawait driver.findElement(By.id('email')).sendKeys('test@mail.com');\nawait driver.findElement(By.id('password')).sendKeys('123456');\nawait driver.findElement(By.id('btn-register')).click();\nlet errorMsg = await driver.wait(until.elementLocated(By.id('error-message')), 5000);\nlet texto = await errorMsg.getText();\nassert.strictEqual(texto, \"La contraseña debe tener al menos 8 caracteres.\");",
+              "err": {},
+              "uuid": "452647f6-ea69-4beb-8e6e-1b2048b28c2a",
+              "parentUUID": "eba190d8-841e-45c0-833b-ed772bca92d0",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Debe registrar exitosamente con datos válidos",
+              "fullTitle": "HU01: Registro de Usuario Debe registrar exitosamente con datos válidos",
+              "timedOut": false,
+              "duration": 6562,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get('http://localhost:3000/register');\nawait driver.findElement(By.name('username')).sendKeys('usuarioTest6');\nawait driver.findElement(By.name('email')).sendKeys('test@correo6.com');\nawait driver.findElement(By.name('password')).sendKeys('password123');\nawait driver.findElement(By.css('button[type=\"submit\"]')).click();\n// En lugar de buscar el texto, verificamos que nos mandó al login\nawait driver.wait(until.urlContains('/login'), 5000);\nlet currentUrl = await driver.getCurrentUrl();\nassert.ok(currentUrl.includes('/login'), \"No redirigió al login tras el registro\");",
+              "err": {
+                "message": "TimeoutError: Waiting for URL to contain \"/login\"\nWait timed out after 5067ms",
+                "estack": "TimeoutError: Waiting for URL to contain \"/login\"\nWait timed out after 5067ms\n    at C:\\xampp\\htdocs\\inventario-selenium\\node_modules\\selenium-webdriver\\lib\\webdriver.js:929:22\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)",
+                "diff": null
+              },
+              "uuid": "6ef52095-8b2a-4091-899a-39679b924335",
+              "parentUUID": "eba190d8-841e-45c0-833b-ed772bca92d0",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "452647f6-ea69-4beb-8e6e-1b2048b28c2a"
+          ],
+          "failures": [
+            "6ef52095-8b2a-4091-899a-39679b924335"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 9200,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        },
+        {
+          "uuid": "fc187f75-16df-45fb-99c0-3254b90cd9f2",
+          "title": "HU02: Inicio de Sesión",
+          "fullFile": "C:\\xampp\\htdocs\\inventario-selenium\\tests\\hu02_login.test.js",
+          "file": "\\tests\\hu02_login.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"HU02: Inicio de Sesión\"",
+              "fullTitle": "HU02: Inicio de Sesión \"before all\" hook in \"HU02: Inicio de Sesión\"",
+              "timedOut": false,
+              "duration": 1842,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await new Builder().forBrowser('chrome').build();",
+              "err": {},
+              "uuid": "e38c249b-3c4d-4b04-855a-58fb29e5c2d4",
+              "parentUUID": "fc187f75-16df-45fb-99c0-3254b90cd9f2",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"HU02: Inicio de Sesión\"",
+              "fullTitle": "HU02: Inicio de Sesión \"after all\" hook in \"HU02: Inicio de Sesión\"",
+              "timedOut": false,
+              "duration": 300,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.quit();",
+              "err": {},
+              "uuid": "9fd9fa88-e89b-4f1a-8ed4-90f2ae166278",
+              "parentUUID": "fc187f75-16df-45fb-99c0-3254b90cd9f2",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "Debe fallar con credenciales incorrectas",
+              "fullTitle": "HU02: Inicio de Sesión Debe fallar con credenciales incorrectas",
+              "timedOut": false,
+              "duration": 2227,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get('http://localhost:3000/login');\nawait driver.findElement(By.id('login-email')).sendKeys('correo@falso.com');\nawait driver.findElement(By.id('login-password')).sendKeys('error123');\nawait driver.findElement(By.id('btn-login')).click();\nlet errorMsg = await driver.wait(until.elementLocated(By.id('error-login')), 5000);\nlet texto = await errorMsg.getText();\nassert.strictEqual(texto, \"Credenciales incorrectas.\");",
+              "err": {},
+              "uuid": "2a40721e-9755-4646-a61a-61d8846ac64c",
+              "parentUUID": "fc187f75-16df-45fb-99c0-3254b90cd9f2",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Debe entrar correctamente con el usuario admin_real",
+              "fullTitle": "HU02: Inicio de Sesión Debe entrar correctamente con el usuario admin_real",
+              "timedOut": false,
+              "duration": 1443,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get('http://localhost:3000/login');\n\n// ESPERA EXPLICITA: No busques el elemento a lo loco\nlet inputEmail = await driver.wait(until.elementLocated(By.id('login-email')), 5000);\nawait inputEmail.sendKeys('test@correo.com');\nawait driver.findElement(By.id('login-password')).sendKeys('password123');\nawait driver.findElement(By.css('button[type=\"submit\"]')).click();\n// Verificamos que entró al dashboard\nawait driver.wait(until.urlContains('/dashboard'), 5000);\nlet url = await driver.getCurrentUrl();\nassert.ok(url.includes('/dashboard'));",
+              "err": {},
+              "uuid": "034a0938-eff5-4183-978b-68b69328beee",
+              "parentUUID": "fc187f75-16df-45fb-99c0-3254b90cd9f2",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "2a40721e-9755-4646-a61a-61d8846ac64c",
+            "034a0938-eff5-4183-978b-68b69328beee"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3670,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        },
+        {
+          "uuid": "0804ab95-0416-49c8-8d3c-960f58a927f7",
+          "title": "HU03: Gestión de Inventario",
+          "fullFile": "C:\\xampp\\htdocs\\inventario-selenium\\tests\\hu03_productos.test.js",
+          "file": "\\tests\\hu03_productos.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"HU03: Gestión de Inventario\"",
+              "fullTitle": "HU03: Gestión de Inventario \"before all\" hook in \"HU03: Gestión de Inventario\"",
+              "timedOut": false,
+              "duration": 1901,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await new Builder().forBrowser('chrome').build();",
+              "err": {},
+              "uuid": "8201189f-b9a5-492b-a5d0-1d0784e59164",
+              "parentUUID": "0804ab95-0416-49c8-8d3c-960f58a927f7",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"HU03: Gestión de Inventario\"",
+              "fullTitle": "HU03: Gestión de Inventario \"after all\" hook in \"HU03: Gestión de Inventario\"",
+              "timedOut": false,
+              "duration": 1001,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.quit();",
+              "err": {},
+              "uuid": "6a1161c4-5911-4b29-bbda-a53a4fe79d25",
+              "parentUUID": "0804ab95-0416-49c8-8d3c-960f58a927f7",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "Debe agregar un nuevo producto y mostrarlo en la tabla",
+              "fullTitle": "HU03: Gestión de Inventario Debe agregar un nuevo producto y mostrarlo en la tabla",
+              "timedOut": false,
+              "duration": 2658,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get('http://localhost:3000/dashboard');\n// 1. Llenar el formulario (esto está bien)\nawait driver.wait(until.elementLocated(By.id('btn-add')), 10000);\nawait driver.findElement(By.id('prod-nombre')).sendKeys('Laptop Dell');\nawait driver.findElement(By.id('prod-cantidad')).sendKeys('10');\nawait driver.findElement(By.id('prod-precio')).sendKeys('750.50');\n\n// 2. Hacemos clic\nawait driver.findElement(By.id('btn-add')).click();\n// 3. NUEVA LÓGICA: Esperar a que el cuerpo de la página contenga el texto\n// En lugar de guardar 'tabla' en una variable, esperamos al TEXTO en el body.\n// Esto es inmune al refresh de la página.\nawait driver.wait(until.elementLocated(By.tagName('body')), 10000);\n\n// 4. Verificación directa sobre el DOM actualizado\n// Buscamos un elemento que contenga el texto dentro de la tabla de forma dinámica\nlet tablaActualizada = await driver.wait(\n    until.elementLocated(By.xpath(\"//table[@id='tabla-productos']//td[contains(., 'Laptop Dell')]\")), \n    10000\n);\nlet textoEncontrado = await tablaActualizada.getText();\nassert.ok(textoEncontrado.includes('Laptop Dell'));\n\nconsole.log(\"✅ Producto agregado y verificado con éxito.\");",
+              "err": {},
+              "uuid": "397ba2a2-9622-4cf6-b039-d001685b66a6",
+              "parentUUID": "0804ab95-0416-49c8-8d3c-960f58a927f7",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "397ba2a2-9622-4cf6-b039-d001685b66a6"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2658,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        },
+        {
+          "uuid": "c0f6bde1-5c0c-4350-9c6c-08b9596e410b",
+          "title": "HU04: Visualización de Inventario",
+          "fullFile": "C:\\xampp\\htdocs\\inventario-selenium\\tests\\hu04_view.test.js",
+          "file": "\\tests\\hu04_view.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"HU04: Visualización de Inventario\"",
+              "fullTitle": "HU04: Visualización de Inventario \"before all\" hook in \"HU04: Visualización de Inventario\"",
+              "timedOut": false,
+              "duration": 2007,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await new Builder().forBrowser('chrome').build();",
+              "err": {},
+              "uuid": "1f94de90-ff1d-44d5-aaca-ecf5fe5eea14",
+              "parentUUID": "c0f6bde1-5c0c-4350-9c6c-08b9596e410b",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"HU04: Visualización de Inventario\"",
+              "fullTitle": "HU04: Visualización de Inventario \"after all\" hook in \"HU04: Visualización de Inventario\"",
+              "timedOut": false,
+              "duration": 407,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.quit();",
+              "err": {},
+              "uuid": "a57ca3bd-3417-4ba7-a9c6-804571cc4a90",
+              "parentUUID": "c0f6bde1-5c0c-4350-9c6c-08b9596e410b",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "Debe mostrar la tabla de productos y contener los datos correctos",
+              "fullTitle": "HU04: Visualización de Inventario Debe mostrar la tabla de productos y contener los datos correctos",
+              "timedOut": false,
+              "duration": 1385,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get('http://localhost:3000/dashboard');\n// 1. Verificar que la tabla existe en el DOM\nlet tabla = await driver.wait(until.elementLocated(By.id('tabla-productos')), 5000);\nassert.ok(tabla, \"La tabla de productos no se encuentra en el Dashboard\");\n// 2. Verificar que al menos hay encabezados (o filas si ya hay datos)\nlet filas = await driver.findElements(By.css('#tabla-productos tr'));\nassert.ok(filas.length > 0, \"La tabla está vacía o no cargó las filas\");\n// 3. Prueba de oro: ¿Se ven los nombres?\nlet textoTabla = await tabla.getText();\nconsole.log(\"Contenido detectado en la tabla para HU04.\");\n\n// Aquí podrías verificar un producto que sepas que siempre existe\n// o simplemente que la estructura es correcta.",
+              "err": {},
+              "uuid": "94674166-51dc-414f-8954-967aa3d9e454",
+              "parentUUID": "c0f6bde1-5c0c-4350-9c6c-08b9596e410b",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "94674166-51dc-414f-8954-967aa3d9e454"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1385,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        },
+        {
+          "uuid": "fe472b43-a39e-497b-a634-4a0a7eb37272",
+          "title": "HU05: Edición de Productos",
+          "fullFile": "C:\\xampp\\htdocs\\inventario-selenium\\tests\\hu05_edit.test.js",
+          "file": "\\tests\\hu05_edit.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"HU05: Edición de Productos\"",
+              "fullTitle": "HU05: Edición de Productos \"before all\" hook in \"HU05: Edición de Productos\"",
+              "timedOut": false,
+              "duration": 1942,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await new Builder().forBrowser('chrome').build();",
+              "err": {},
+              "uuid": "caf0720a-5019-4392-ad27-2599c66a87e4",
+              "parentUUID": "fe472b43-a39e-497b-a634-4a0a7eb37272",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"HU05: Edición de Productos\"",
+              "fullTitle": "HU05: Edición de Productos \"after all\" hook in \"HU05: Edición de Productos\"",
+              "timedOut": false,
+              "duration": 493,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if (driver) await driver.quit();",
+              "err": {},
+              "uuid": "2ad28a52-db20-473d-b2b4-7af995511ec7",
+              "parentUUID": "fe472b43-a39e-497b-a634-4a0a7eb37272",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "Debe editar un producto usando el formulario de edición",
+              "fullTitle": "HU05: Edición de Productos Debe editar un producto usando el formulario de edición",
+              "timedOut": false,
+              "duration": 4702,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get('http://localhost:3000/dashboard');\n// 1. Crear un producto con nombre único para no confundirnos\nlet nombreOriginal = \"Producto_\" + Date.now();\nawait driver.findElement(By.id('prod-nombre')).sendKeys(nombreOriginal);\nawait driver.findElement(By.id('prod-cantidad')).sendKeys('10');\nawait driver.findElement(By.id('prod-precio')).sendKeys('100.00');\nawait driver.findElement(By.id('btn-add')).click();\n// Esperamos a que la tabla se refresque\nawait driver.wait(until.elementLocated(By.id('tabla-productos')), 5000);\n// 2. JALAR EL LINK DINÁMICO: Buscamos el link de editar que contiene el ID real\n// Esto evita el error de \"ID 26 no existe\"\nlet btnEdits = await driver.wait(until.elementsLocated(By.css('.btn-edit')), 5000);\nlet ultimoBtn = btnEdits[btnEdits.length - 1];\n\n// Obtenemos la URL (ej: /edit-product/27) y navegamos a ella\nlet editUrl = await ultimoBtn.getAttribute('href');\nawait driver.get(editUrl); \n// 3. Ahora sí, interactuamos con el formulario de edición\n// Esperamos explícitamente al ID que fallaba antes\nlet inputNombre = await driver.wait(until.elementLocated(By.id('edit-nombre')), 8000);\n\nawait inputNombre.clear();\nawait inputNombre.sendKeys('Nombre Actualizado');\n\n// Enviamos el formulario\nawait driver.findElement(By.id('btn-save-edit')).click();\n// 4. Verificación final en el Dashboard\nawait driver.wait(until.elementLocated(By.id('tabla-productos')), 5000);\nlet tablaText = await driver.findElement(By.id('tabla-productos')).getText();\n\nassert.ok(tablaText.includes('Nombre Actualizado'), \"El nombre no cambió en la tabla\");\nconsole.log(\"✅ HU05: Edición dinámica completada.\");",
+              "err": {},
+              "uuid": "1d6dcbdf-531d-46a9-9468-19cac5a1ef53",
+              "parentUUID": "fe472b43-a39e-497b-a634-4a0a7eb37272",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "1d6dcbdf-531d-46a9-9468-19cac5a1ef53"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4702,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        },
+        {
+          "uuid": "d6c88590-ff8c-495d-8f91-197691006174",
+          "title": "HU06: Eliminación de Productos",
+          "fullFile": "C:\\xampp\\htdocs\\inventario-selenium\\tests\\hu06_delete.test.js",
+          "file": "\\tests\\hu06_delete.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"HU06: Eliminación de Productos\"",
+              "fullTitle": "HU06: Eliminación de Productos \"before all\" hook in \"HU06: Eliminación de Productos\"",
+              "timedOut": false,
+              "duration": 2378,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await new Builder().forBrowser('chrome').build();",
+              "err": {},
+              "uuid": "980e4513-0a7f-416a-bcb5-2578d5816848",
+              "parentUUID": "d6c88590-ff8c-495d-8f91-197691006174",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"HU06: Eliminación de Productos\"",
+              "fullTitle": "HU06: Eliminación de Productos \"after all\" hook in \"HU06: Eliminación de Productos\"",
+              "timedOut": false,
+              "duration": 367,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.quit();",
+              "err": {},
+              "uuid": "3626872c-2f9b-48a4-8240-0a92b20cdc1c",
+              "parentUUID": "d6c88590-ff8c-495d-8f91-197691006174",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "Debe eliminar un producto de la lista al hacer clic en Eliminar",
+              "fullTitle": "HU06: Eliminación de Productos Debe eliminar un producto de la lista al hacer clic en Eliminar",
+              "timedOut": false,
+              "duration": 5787,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.get('http://localhost:3000/dashboard');\n// 1. Usamos un nombre ÚNICO para no chocar con restos de tests fallidos\nlet nombreUnico = 'Borrar_' + Date.now();\nawait driver.findElement(By.id('prod-nombre')).sendKeys(nombreUnico);\nawait driver.findElement(By.id('prod-cantidad')).sendKeys('5');\nawait driver.findElement(By.id('prod-precio')).sendKeys('10.00');\nawait driver.findElement(By.id('btn-add')).click();\n// 2. ESPERA CRUCIAL: Esperamos a que al menos UN botón de eliminar aparezca en el DOM\n// Esto evita el error de \"reading click of undefined\"\nawait driver.wait(until.elementsLocated(By.css('.btn-delete')), 10000);\n// 3. Ahora que sabemos que existen, los capturamos\nlet btnDeletes = await driver.findElements(By.css('.btn-delete'));\n\n// Hacemos clic en el último (el que acabamos de crear)\nawait btnDeletes[btnDeletes.length - 1].click();\n// 4. Esperar a que la página procese la eliminación\nawait driver.sleep(2000);\n// 5. Verificamos que el nombre único YA NO ESTÉ en la tabla\nlet tabla = await driver.wait(until.elementLocated(By.id('tabla-productos')), 5000);\nlet textoBusqueda = await tabla.getText();\n\nassert.ok(!textoBusqueda.includes(nombreUnico), \"ERROR: El producto sigue apareciendo en la tabla\");\nconsole.log(`✅ HU06: Producto [${nombreUnico}] eliminado exitosamente.`);",
+              "err": {},
+              "uuid": "ce6b318c-ccdf-495e-8808-a7adf884a946",
+              "parentUUID": "d6c88590-ff8c-495d-8f91-197691006174",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "ce6b318c-ccdf-495e-8808-a7adf884a946"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 5787,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        },
+        {
+          "uuid": "98ba8404-c26e-482b-a723-6f4e47b43eed",
+          "title": "HU07: Cierre de Sesión",
+          "fullFile": "C:\\xampp\\htdocs\\inventario-selenium\\tests\\hu07_logout.test.js",
+          "file": "\\tests\\hu07_logout.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"HU07: Cierre de Sesión\"",
+              "fullTitle": "HU07: Cierre de Sesión \"before all\" hook in \"HU07: Cierre de Sesión\"",
+              "timedOut": false,
+              "duration": 2046,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await new Builder().forBrowser('chrome').build();",
+              "err": {},
+              "uuid": "441cb40a-c441-48e1-960d-09fa8f921af2",
+              "parentUUID": "98ba8404-c26e-482b-a723-6f4e47b43eed",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"HU07: Cierre de Sesión\"",
+              "fullTitle": "HU07: Cierre de Sesión \"after all\" hook in \"HU07: Cierre de Sesión\"",
+              "timedOut": false,
+              "duration": 492,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if (driver) await driver.quit();",
+              "err": {},
+              "uuid": "b559b88b-37b0-482c-86b3-c961028e69b2",
+              "parentUUID": "98ba8404-c26e-482b-a723-6f4e47b43eed",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "Debe redirigir al login al hacer clic en Cerrar Sesión",
+              "fullTitle": "HU07: Cierre de Sesión Debe redirigir al login al hacer clic en Cerrar Sesión",
+              "timedOut": false,
+              "duration": 1532,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// 1. Primero entramos al dashboard\nawait driver.get('http://localhost:3000/dashboard');\n// 2. Buscamos el botón de logout y hacemos clic\nlet btnLogout = await driver.wait(until.elementLocated(By.id('btn-logout')), 10000);\nawait btnLogout.click();\n// 3. Verificamos que la URL ahora contenga /login\nawait driver.wait(until.urlContains('/login'), 15000);\nlet currentUrl = await driver.getCurrentUrl();\n\nassert.ok(currentUrl.includes('/login'), \"El usuario no fue redirigido al Login\");\n\n// 4. Verificamos que el formulario de login esté presente\nlet formLogin = await driver.findElement(By.id('login-email'));\nassert.ok(formLogin, \"No se encontró el formulario de login tras cerrar sesión\");\n\nconsole.log(\"✅ HU07: Logout verificado exitosamente.\");",
+              "err": {},
+              "uuid": "1f6d9337-5ccc-4836-9140-c02d2e1ddb3f",
+              "parentUUID": "98ba8404-c26e-482b-a723-6f4e47b43eed",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "1f6d9337-5ccc-4836-9140-c02d2e1ddb3f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1532,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 30000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 30000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.7.5"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.3.2"
+    }
+  }
+}

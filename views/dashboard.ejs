@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario Pro</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <div class="main-wrapper">
+        <header class="app-header">
+            <h2 class="title-brand" style="font-size: 1.5rem; margin-bottom: 0;">Inventario Pro Selenium</h2>
+            <a href="/logout" id="btn-logout" class="btn-logout">Cerrar Sesión</a>
+        </header>
+
+        <aside class="glass-card" id="aside-formulario">
+            <h3>Nuevo Producto</h3>
+            <form action="/add-product" method="POST">
+                <div class="form-group">
+                    <input type="text" id="prod-nombre" name="nombre" placeholder="Nombre" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="prod-cantidad" name="cantidad" placeholder="Cantidad" required>
+                </div>
+                <div class="form-group">
+                    <input type="number" id="prod-precio" name="precio" step="0.01" placeholder="Precio" required>
+                </div>
+                <button type="submit" id="btn-add" class="btn-primary">Añadir a Stock</button>
+            </form>
+        </aside>
+
+        <main class="glass-card">
+            <h3>Stock Actual</h3>
+            <div class="table-container">
+                <table id="tabla-productos">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Cant.</th>
+                            <th>Precio</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% products.forEach(p => { %>
+                            <tr>
+                                <td><strong><%= p.nombre %></strong></td>
+                                <td><%= p.cantidad %></td>
+                                <td>$<%= p.precio %></td>
+                                <td class="action-links">
+                                    <a href="/edit-product/<%= p.id %>" class="edit-link btn-edit">Editar</a>
+                                    <a href="/delete-product/<%= p.id %>" class="delete-link btn-delete">Eliminar</a>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
